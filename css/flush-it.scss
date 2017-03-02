@@ -1,0 +1,514 @@
+@import 'variables';
+
+#flush-it {
+    .dropzone {
+        position: absolute;
+        top: 38%;
+        left: 40%;
+        width: 20%;
+        height: 41%;
+
+        &::before {
+            position: absolute;
+            top: -95%;
+            left: -29%;
+            background: url('#{$image}img-6-1.png');
+            background-repeat: no-repeat;
+            background-position: 13px 0;
+            background-size: 90%;
+            width: 159%;
+            height: 246%;
+            content: '';
+        }
+
+        &.disable {
+            pointer-events: none;
+
+            + ul {
+                pointer-events: none;
+            }
+        }
+    }
+
+    ul li {
+        position: absolute;
+        width: 3%;
+        height: 5%;
+
+        &:nth-of-type(1) {
+            top: 12%;
+            left: 14%;
+
+            div.wipes {
+                &::after {
+                    background-position: 10px 11px;
+                }
+
+                &.CORRECT::after {
+                    background-position: 3px 5px;
+                }
+            }
+        }
+
+        &:nth-of-type(2) {
+            top: 12%;
+            left: 25%;
+
+            div.diapers {
+                &::after {
+                    background-position: 12px 305px;
+                }
+
+                &.CORRECT::after {
+                    background-position: 6px 451px;
+                }
+            }
+        }
+
+        &:nth-of-type(3) {
+            top: 30%;
+            left: 14%;
+
+            div.paper {
+                &::after {
+                    top: -170%;
+                    background-position: 9px -79px;
+                    height: 440%;
+                }
+
+                &.CORRECT::after {
+                    left: -170%;
+                    background-position: 10px -151px;
+                    width: 440%;
+                }
+            }
+        }
+
+        &:nth-of-type(4) {
+            top: 30%;
+            left: 25%;
+
+            div.sheets {
+                &::after {
+                    left: -120%;
+                    background-position: 13px 211px;
+                    width: 340%;
+                }
+
+                &.CORRECT::after {
+                    left: -170%;
+                    background-position: 2px 306px;
+                    width: 440%;
+                }
+            }
+        }
+
+        &:nth-of-type(5) {
+            top: 50%;
+            left: 14%;
+
+            div.fats {
+                &::after {
+                    top: -135%;
+                    background-position: 21px 497px;
+                    height: 370%;
+                }
+
+                &.CORRECT::after {
+                    top: -235%;
+                    background-position: 25px 746px;
+                    height: 570%;
+                }
+            }
+        }
+
+        &:nth-of-type(6) {
+            top: 50%;
+            left: 25%;
+
+            div.cosmetics {
+                &::after {
+                    top: -150%;
+                    background-position: 9px 108px;
+                    height: 400%;
+                }
+
+                &.CORRECT::after {
+                    top: -220%;
+                    background-position: 4px 149px;
+                    height: 540%;
+                }
+            }
+        }
+
+        &:nth-of-type(7) {
+            top: 69%;
+            left: 19%;
+
+            div.bandages {
+                &::after {
+                    left: -120%;
+                    background-position: 11px 400px;
+                    width: 340%;
+                }
+
+                &.CORRECT::after {
+                    left: -170%;
+                    background-position: 0 589px;
+                    width: 440%;
+                }
+            }
+        }
+
+        &:nth-of-type(8) {
+            top: 14%;
+            left: 71%;
+
+            div.litter {
+                &::after {
+                    top: -135%;
+                    left: -130%;
+                    background-position: 111px 9px;
+                    width: 360%;
+                    height: 370%;
+                }
+
+                &.CORRECT::after {
+                    top: -195%;
+                    left: -190%;
+                    background-position: 153px 0;
+                    width: 480%;
+                    height: 490%;
+                }
+            }
+        }
+
+        &:nth-of-type(9) {
+            top: 14%;
+            left: 82%;
+
+            div.cotton {
+                &::after {
+                    left: -110%;
+                    background-position: 105px 600px;
+                    width: 320%;
+                }
+
+                &.CORRECT::after {
+                    left: -170%;
+                    background-position: 150px 891px;
+                    width: 440%;
+                }
+            }
+        }
+
+        &:nth-of-type(10) {
+            top: 33%;
+            left: 71%;
+
+            div.gum {
+                &::after {
+                    background-position: 107px 310px;
+                }
+
+                &.CORRECT::after {
+                    background-position: 150px 457px;
+                }
+            }
+        }
+
+        &:nth-of-type(11) {
+            top: 33%;
+            left: 82%;
+
+            div.floss {
+                &::after {
+                    top: -115%;
+                    background-position: 109px 505px;
+                    height: 330%;
+                }
+
+                &.CORRECT::after {
+                    top: -160%;
+                    background-position: 151px 745px;
+                    height: 440%;
+                }
+            }
+        }
+
+        &:nth-of-type(12) {
+            top: 52%;
+            left: 71%;
+
+            div.hair {
+                &::after {
+                    top: -140%;
+                    background-position: 113px 207px;
+                    height: 380%;
+                }
+
+                &.CORRECT::after {
+                    top: -205%;
+                    background-position: 159px 297px;
+                    height: 510%;
+                }
+            }
+        }
+
+        &:nth-of-type(13) {
+            top: 52%;
+            left: 82%;
+
+            div.meds {
+                &::after {
+                    top: -140%;
+                    background-position: 114px 406px;
+                    height: 380%;
+                }
+
+                &.CORRECT::after {
+                    top: -210%;
+                    background-position: 160px 596px;
+                    height: 500%;
+                }
+            }
+        }
+
+        &:nth-of-type(14) {
+            top: 71%;
+            left: 76%;
+
+            div.chemicals {
+                &::after {
+                    top: -135%;
+                    background-position: 115px 109px;
+                    height: 370%;
+                }
+
+                &.CORRECT::after {
+                    top: -205%;
+                    background-position: 162px 150px;
+                    height: 490%;
+                }
+            }
+        }
+
+        > div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            &::after {
+                position: absolute;
+                top: -100%;
+                left: -100%;
+                transition: opacity .25s .25s;
+                opacity: 1;
+                background: url('#{$sprite}sprite-6-2.png');
+                background-size: 200px 698px;
+                width: 300%;
+                height: 300%;
+                content: '';
+            }
+
+            &.CORRECT {
+                pointer-events: none;
+
+                &::after {
+                    top: -150%;
+                    left: -150%;
+                    background-size: 300px 1047px;
+                    width: 400%;
+                    height: 400%;
+                }
+            }
+
+            &.DRAGGING {
+                z-index: 1;
+            }
+        }
+    }
+
+    .dropzone {
+        $items: wipes diapers paper sheets fats cosmetics bandages litter cotton gum floss hair meds chemicals;
+        @for $i from 1 through 14 {
+            &.#{nth($items, $i)} + ul li > div.#{nth($items, $i)}:after {
+                animation-name: flushTitle;
+                animation-duration: 3s;
+                animation-iteration-count: 1;
+                opacity: 0;
+            }
+        }
+    }
+
+    .frame {
+        position: absolute;
+        top: 1%;
+        background: url('#{$image}frame-tall.png');
+        background-size: cover;
+        width: 28%;
+        height: 88%;
+
+        &.left {
+            left: 7%;
+        }
+
+        &.right {
+            right: 8%;
+        }
+    }
+
+    button.flush {
+        position: absolute;
+        top: 3%;
+        left: 43%;
+        z-index: 1;
+
+        background: url('#{$sprite}img-6-2.png');
+        background-position: -3px -11px;
+        background-size: 210%;
+
+        width: 14%;
+        height: 22%;
+
+        &:hover {
+            background-position: 135px -11px;
+        }
+
+        &.disable {
+            pointer-events: none;
+        }
+    }
+
+    div.reveal.OPEN {
+        display: inline-block;
+        transition-property: opacity;
+        transition-duration: 2s;
+        transition-delay: 0s;
+
+        > div {
+            top: 0;
+            margin: 0;
+            height: 100%;
+
+            li.reveal.OPEN {
+                display: inline-block;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                animation-name: fadeIn;
+                animation-delay: 0s;
+                background: $transparent-black url('#{$image}frame.png') no-repeat;
+                background-position: 210px 137px;
+                background-size: 55%;
+                width: 100%;
+                height: 100%;
+
+                &.intro {
+                    animation: none;
+
+                    h3 {
+                        position: absolute;
+                        top: 52%;
+                        left: 49%;
+                        text-align: center;
+                        color: $black;
+                        font-size: 25px;
+                    }
+
+                    &::after {
+                        content: none;
+                    }
+                }
+
+                &::after {
+                    position: absolute;
+                    top: 32%;
+                    left: 27%;
+                    background: url('#{$sprite}sprite-6-1.png');
+                    background-size: cover;
+                    width: 45%;
+                    height: 15%;
+                    content: '';
+                }
+
+                &.wipes::after {
+                    background-position: 85px 0;
+                }
+
+                &.diapers::after {
+                    background-position: 123px -80px;
+                }
+
+                &.paper::after {
+                    background-position: 55px -175px;
+                }
+
+                &.sheets::after {
+                    background-position: 65px -262px;
+                }
+
+                &.fats::after {
+                    background-position: 15px -348px;
+                }
+
+                &.cosmetics::after {
+                    background-position: 94px -443px;
+                }
+
+                &.bandages::after {
+                    background-position: 97px -536px;
+                }
+
+                &.litter::after {
+                    background-position: 96px -625px;
+                }
+
+                &.cotton::after {
+                    background-position: 17px -711px;
+                }
+
+                &.gum::after {
+                    background-position: 146px -807px;
+                }
+
+                &.floss::after {
+                    background-position: 73px -896px;
+                }
+
+                &.hair::after {
+                    background-position: 164px 462px;
+                }
+
+                &.meds::after {
+                    background-position: 25px -1074px;
+                }
+
+                &.chemicals::after {
+                    background-position: 18px -1152px;
+                }
+
+                h3 {
+                    position: absolute;
+                    top: 57%;
+                    left: 49%;
+                    transform: translateX(-50%) translateY(-50%);
+                    width: 80%;
+                    text-align: center;
+                    color: $black;
+                    font-size: 22px;
+                }
+            }
+        }
+
+        .close-reveal {
+            top: 70%;
+            left: 65%;
+            z-index: 2;
+            background-position: 777px -82px;
+            width: 7%;
+            height: 10%;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+.reveal {}
+  
+  .reveal ul {
+    position: relative;
+    padding: 0;
+  }
+
+    .reveal li {
+      list-style: none;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .reveal li.OPEN {
+      opacity: 1;
+    }

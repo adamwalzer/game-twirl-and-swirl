@@ -1,0 +1,544 @@
+@import 'variables';
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+body > div,
+body > div > div {
+    margin: 0;
+    cursor: auto;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    user-select: none;
+    user-drag: none;
+}
+
+html {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+body > div > div {
+    position: relative;
+    margin: auto;
+    width: 960px;
+    height: 540px;
+    color: $white;
+    font-size: 36px;
+
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity .5s;
+        opacity: 0;
+        background-position: center center no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+
+        &.bkg-1 {
+            background: url('#{$image}background-title.png'); //blue tile
+        }
+
+        &.bkg-2 {
+            background-image: url('#{$image}background.png'); // white tile
+        }
+
+        &.bkg-3 {
+            background-image: url('#{$image}background-plant.png');// plant
+        }
+
+        &.bkg-4 {
+            background-image: url('#{$image}background-released.jpg');// released
+        }
+
+        &.bkg-5 {
+            background-image: url('#{$image}background-catcher.png');// catch game
+        }
+
+        &.bkg-6 {
+            background-image: url('#{$image}background-flip.png');//flip
+        }
+
+    }
+
+    .background.bkg-1,
+    &.SCREEN-2 .background.bkg-2,
+    &.SCREEN-3 .background.bkg-3,
+    &.SCREEN-6 .background.bkg-4,
+    &.SCREEN-7 .background.bkg-2,
+    &[class *='catch-game-lvl'] .background.bkg-5,
+    &.SCREEN-13 .background.bkg-2,
+    &.SCREEN-14 .background.bkg-6 {
+        opacity: 1;
+    }
+
+
+    &.MENU-quit {
+        .screen:not(#quit) {
+            opacity: 0;
+        }
+    }
+}
+
+button {
+    margin: 0;
+    outline: none;
+    border: 0;
+    background: url('#{$sprite}buttons.png');
+    background-color: transparent;
+    background-size: 1500px 427px;
+    cursor: pointer;
+    padding: 0;
+    color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+
+    &.close {
+        position: absolute;
+        top: 1%;
+        right: 1%;
+        z-index: 2;
+        background-position: 562px 353px;
+        width: 6%;
+        height: 12%;
+
+        &:hover {
+            background-position: 562px 140px;
+        }
+    }
+
+    &.next-screen,
+    &.prev-screen {
+        width: 10%;
+        height: 14%;
+    }
+
+    &.next-screen {
+        background-position: 1004px 359px;
+
+        &:hover {
+            background-position: 1004px 146px;
+        }
+    }
+
+    &.prev-screen {
+        background-position: 1220px 359px;
+
+        &:hover {
+            background-position: 1220px 146px;
+        }
+    }
+
+    &.close-reveal {
+        background-position: -225px 420px;
+        width: 55px;
+        height: 50px;
+
+        &.ENABLED:hover {
+            background-position: -225px 676px;
+        }
+    }
+
+    &.quit-yes {
+        background-position: -1830px 495px;
+        width: 230px;
+        height: 230px;
+
+        &:hover {
+            background-position: -1830px 251px;
+        }
+    }
+
+    &.quit-no {
+        background-position: -2080px 495px;
+        width: 230px;
+        height: 230px;
+
+        &:hover {
+            background-position: -2080px 251px;
+        }
+    }
+}
+
+body.DEMO .reveal-component .items li div .close-reveal {
+    cursor: pointer;
+
+    &:hover {
+        background-position: -225px 676px;
+    }
+}
+
+h2 {
+    font-size: 40px;
+}
+
+h3 {
+    margin: 0;
+    font-size: 30px;
+}
+
+p {
+    margin: 0;
+    font-size: 28px;
+}
+
+// preload game assets
+#asset-bin {
+    display: none;
+}
+
+.canvas-src { display: none; }
+
+.screen {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: opacity .5s, z-index 0s 1s;
+    opacity: 0;
+    z-index: -1;
+    width: 960px;
+    height: 540px;
+    overflow: hidden;
+
+    &:not(.COMPLETE) {
+        button {
+            &.next-screen {
+                cursor: auto;
+            }
+        }
+    }
+
+    &.OPEN {
+        transition: opacity .5s, z-index 0s;
+        opacity: 1;
+        z-index: 1;
+    }
+
+    &.READY {
+        display: block;
+    }
+
+    &.GATED .next-screen {
+        visibility: hidden;
+        opacity: 0;
+        z-index: -1;
+        cursor: auto;
+    }
+
+    .next-screen,
+    .prev-screen {
+        position: absolute;
+        bottom: 2%;
+        visibility: visible;
+        z-index: 2;
+    }
+
+    .next-screen {
+        right: 1%;
+        transition: visibility 1s, opacity 1s;
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+.DEMO .screen .next-screen,
+.screen.COMPLETE .next-screen,
+.screen.REPLAY .next-screen {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+    visibility: visible;
+    opacity: 1;
+    z-index: 2;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.MENU.MENU-quit .menu .close {
+    visibility: hidden;
+}
+
+
+.screen .prev-screen {
+    left: 1%;
+}
+
+// the following css is specific to this game
+.dropzone + ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.reveal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity .5s, z-index 0s .6s;
+    opacity: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+
+    div {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        margin-top: -120px;
+        background-size: 100% 100%;
+        width: 100%;
+        height: 240px;
+    }
+
+    ul {
+        margin: 0;
+        height: 100%;
+
+        li {
+            margin: 0;
+            height: 100%;
+
+            p {
+                display: block;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 100%;
+                text-align: center;
+                color: $black;
+            }
+
+        }
+    }
+
+    .close-reveal {
+        position: absolute;
+        right: 5px;
+        bottom: 10px;
+        transition: opacity .5s ease .5s, visibility .25s ease .25s, z-index 0s .6s;
+        visibility: hidden;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    &.OPEN {
+        transition: opacity .5s;
+        opacity: 1;
+        z-index: 2;
+
+        .close-reveal {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+.VOICE-OVER:not(.DEMO),
+.SFX:not(.DEMO) {
+    .draggable,
+    .selectable > * {
+        pointer-events: none;
+    }
+}
+
+.VOICE-OVER,
+.SFX {
+    &:not(.DEMO) {
+        .reveal {
+            .close-reveal {
+                visibility: hidden;
+                opacity: 0;
+            }
+        }
+    }
+}
+
+.video {
+    background: url('#{$frame}fr-2.png') center center no-repeat;
+    background-size: 100% 100%;
+
+    video {
+        margin: 15px 15px 34px;
+    }
+}
+
+#title {
+    .center {
+        transform: rotateY(90deg);
+        opacity: 0;
+        margin-left: 20%;
+
+        background-image: url('#{$image}toilet-background.png');
+        background-repeat: no-repeat;
+        background-size: 55%;
+
+        &.COMPLETE {
+            transform: rotateY(0);
+            transition: transform 2s, opacity 2s, background-size 1s;
+            opacity: 1;
+            z-index: 1;
+            background-size: 71%;
+            transform-origin: top left;
+        }
+    }
+
+    .logo {
+        margin-top: -4%;
+        margin-left: -31%;
+        width: 60%;
+    }
+
+    &.OPEN {
+        .logo {
+            animation-name: fadeInUp;
+            animation-delay: 1s;
+        }
+    }
+
+    &.LEAVING {
+        .logo {
+            animation-name: flushTitle;
+            animation-duration: 3s;
+            animation-iteration-count: 1;
+            opacity: 0;
+        }
+    }
+
+    .next-screen {
+        z-index: 1;
+        background-position: 0 6px;
+        width: 240px;
+        height: 208px;
+
+        &:hover {
+            background-position: 0 -207px;
+        }
+    }
+}
+
+#info-question {
+    img {
+        position: absolute;
+
+        &.toilet {
+            bottom: 0;
+            left: 0;
+            width: 50%;
+        }
+    }
+
+    .message {
+        position: absolute;
+        top: 6%;
+        right: 10%;
+        background-image: url('#{$image}frame.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 40%;
+        height: 46%;
+        text-align: center;
+        font-size: 1.4em;
+
+        h3 {
+            position: absolute;
+            top: 23%;
+            left: 14%;
+            color: $black;
+        }
+    }
+
+    .next-screen {
+        right: 18%;
+        bottom: 7%;
+        z-index: 1;
+        background: url('#{$sprite}img-3-2.png');
+        background-position: 1px -3px;
+        background-size: cover;
+        width: 25%;
+        height: 44%;
+
+        &:hover {
+            background-position: 238px 0;
+        }
+    }
+}
+
+#info-plant,
+#info-released {
+    h2 {
+        margin: 20px auto;
+        width: 700px;
+        text-align: center;
+        color: $black;
+        font-size: 30px;
+    }
+}
+
+#responsible-flusher,
+#lets-clean-up,
+#make-a-difference {
+    img {
+        position: absolute;
+
+        &.banner {
+            top: 62%;
+            left: 10%;
+            width: 80%;
+        }
+
+        &.toilet {
+            bottom: 0;
+            left: 0;
+            width: 50%;
+        }
+    }
+
+    .message {
+        position: absolute;
+        top: 6%;
+        right: 7%;
+        background-image: url('#{$image}frame.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 50%;
+        height: 56%;
+        text-align: center;
+
+        p {
+            position: absolute;
+            top: 18%;
+            left: 8%;
+            color: $black;
+            font-size: 33px;
+            font-weight: 600;
+        }
+    }
+}
+
+#lets-clean-up {
+    img.banner {
+        top: 54%;
+        left: 9%;
+    }
+}
+
+#make-a-difference {
+    img.banner {
+        top: 58%;
+        left: 27%;
+        width: 40%;
+    }
+
+    .message p {
+        left: 8%;
+        font-size: 31px;
+        font-weight: 600;
+    }
+}

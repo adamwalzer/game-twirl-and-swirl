@@ -1,0 +1,641 @@
+@import 'variables';
+
+[id*='catch-game'] {
+    .misc {
+        * {
+            position: absolute;
+            animation-iteration-count: infinite;
+            background: url('#{$sprite}sprite-fish.png');
+            background-size: 750px 282px;
+            width: 20%;
+            height: 21%;
+
+            .PAUSED & {
+                animation-play-state: paused;
+            }
+        }
+
+        .fish-1 {
+            bottom: 20%;
+            left: -20%;
+            animation-name: fishLeft;
+            animation-duration: 30s;
+            background-position: 0 10px;
+            width: 16%;
+
+            &.sad {
+                background-position: 0 142px;
+            }
+        }
+
+        .fish-2 {
+            right: -20%;
+            bottom: 10%;
+            animation-name: fishRight;
+            animation-duration: 25s;
+            animation-delay: 1s;
+            background-position: 584px 4px;
+
+            &.sad {
+                background-position: 584px 137px;
+            }
+        }
+
+        .fish-3 {
+            bottom: 14%;
+            left: -20%;
+
+            animation-name: fishLeft;
+            animation-duration: 20s;
+            animation-delay: 2s;
+
+            background-position: 403px 0;
+
+            &.sad {
+                background-position: 403px 131px;
+            }
+        }
+
+        .fish-4 {
+            right: -20%;
+            bottom: 8%;
+
+            animation-name: fishRight;
+            animation-duration: 15s;
+            animation-delay: 3s;
+
+            background-position: 193px 7px;
+
+            &.sad {
+                background-position: 193px 140px;
+            }
+        }
+    }
+
+    .drop-points {
+        .pipe {
+            position: absolute;
+            top: 0;
+            background: url('#{$image}pipe.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 30%;
+            height: 65%;
+
+            &.left {
+                left: 4%;
+            }
+
+            &.middle {
+                left: 33%;
+            }
+
+            &.right {
+                right: 10%;
+            }
+        }
+    }
+
+    .score {
+        position: absolute;
+        top: 10%;
+        left: 0;
+        width: 22%;
+        height: 10%;
+        text-align: center;
+        color: $blue;
+        font-size: 40px;
+        font-weight: 600;
+
+        &::after {
+            position: absolute;
+            top: -80%;
+            left: 0;
+            background: url('#{$sprite}sprites-level.png');
+            background-size: 1184px;
+            width: 100%;
+            height: 100%;
+            content: '';
+        }
+
+        &.lvl-1::after {
+            background-position: -16px -49px;
+        }
+
+        &.lvl-2::after {
+            background-position: -251px -49px;
+        }
+
+        &.lvl-3::after {
+            background-position: -492px -49px;
+        }
+
+        &.lvl-4::after {
+            background-position: -729px -49px;
+        }
+
+        &.lvl-5::after {
+            background-position: -963px -49px;
+        }
+    }
+
+    .timer {
+        position: absolute;
+        top: 9%;
+        right: 1%;
+        color: $blue;
+        font-size: 40px;
+        font-weight: 900;
+
+        span {
+            text-shadow: 0 5px 10px $black;
+        }
+
+        &.TIMEOUT {
+            animation: pulse 2s infinite;
+            color: $red;
+        }
+    }
+
+    .dropper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        .randomizer {
+            display: none;
+        }
+    }
+
+    .items {
+        position: absolute;
+        top: 5%;
+        left: 0;
+        z-index: 1;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 50%;
+        overflow: visible;
+        list-style: none;
+        pointer-events: none;
+    }
+
+    .catchable.go {
+        position: absolute;
+        top: 0;
+        transition: opacity .5s;
+        animation-name: catchable;
+        animation-timing-function: linear;
+        opacity: 1;
+        background: url('#{$sprite}sprite-6-2.png');
+        background-size: 275px 960px;
+        width: 15%;
+        height: 50%;
+
+        &.slow {
+            animation-duration: 5s;
+        }
+
+        &.medium {
+            animation-duration: 4s;
+        }
+
+        &.fast {
+            animation-duration: 3s;
+        }
+
+        &.turtle {
+            background-image: url('#{$image}turtle.png');
+            background-repeat: no-repeat;
+            background-position: 0 15px;
+            background-size: contain;
+        }
+
+        &.frog {
+            background-image: url('#{$image}frog.png');
+            background-repeat: no-repeat;
+            background-position: 0 15px;
+            background-size: contain;
+        }
+
+        &.fish {
+            background-image: url('#{$sprite}sprite-fish.png');
+            background-position: 380px 15px;
+            background-size: 750px 282px;
+        }
+
+        &.plant {
+            background-image: url('#{$image}plants.png');
+            background-repeat: no-repeat;
+            background-position: -81px 0;
+            background-size: 750px 129px;
+        }
+
+        &.floss {
+            background-position: 156px 700px;
+        }
+
+        &.medicine {
+            background-position: 166px 554px;
+        }
+
+        &.diaper {
+            background-position: 27px 435px;
+        }
+
+        &.bandaid {
+            background-position: 17px 552px;
+        }
+
+        &.oil {
+            background-position: 42px 686px;
+        }
+
+        &.gum {
+            background-position: 156px 428px;
+        }
+
+        &.left {
+            left: 14%;
+        }
+
+        &.middle {
+            left: 43%;
+        }
+
+        &.right {
+            left: 71%;
+        }
+
+        &.correct::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-align: right;
+            color: $white;
+            font-size: 50px;
+            font-weight: 600;
+            content: '+5';
+        }
+
+        &.incorrect::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-align: right;
+            color: $orange;
+            font-size: 50px;
+            font-weight: 600;
+            content: '-10';
+        }
+
+        &.trash:not(.CAUGHT)::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity .5s;
+            animation-name: incorrectCatchable;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            text-align: right;
+            color: $orange;
+            font-size: 50px;
+            font-weight: 600;
+            content: '-10';
+        }
+
+        &.trash.slow:not(.CAUGHT)::after {
+            animation-duration: 5s;
+        }
+
+        &.trash.medium:not(.CAUGHT)::after {
+            animation-duration: 4s;
+        }
+
+        &.trash.fast:not(.CAUGHT)::after {
+            animation-duration: 3s;
+        }
+
+        .PAUSED & {
+            animation-play-state: paused;
+
+            &::after {
+                animation-play-state: paused;
+            }
+        }
+    }
+
+    .catcher {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        .bucket {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5%;
+            height: 5%;
+            pointer-events: none;
+
+            &::before {
+                position: absolute;
+                top: -50%;
+                left: -150%;
+
+                background: url('#{$sprite}basket.png');
+                background-position: center -45px;
+                background-size: 130%;
+
+                width: 400%;
+                height: 400%;
+                content: '';
+                pointer-events: none;
+            }
+        }
+    }
+
+    .reveal {
+        > div {
+            transform: translateY(-50%);
+            margin-top: 0;
+            height: 100%;
+        }
+
+        .frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 0;
+            margin-top: 0;
+
+            background: url('#{$image}frame.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+
+            width: 80%;
+            height: 80%;
+            text-align: center;
+        }
+
+        .close-reveal {
+            display: none;
+        }
+
+        &.open-instructions {
+            .fish-left {
+                position: absolute;
+                top: 9%;
+                left: 11%;
+                width: 13%;
+            }
+
+            .fish-right {
+                position: absolute;
+                top: 388px;
+                left: 514px;
+                width: 22%;
+                height: 29%;
+                overflow: hidden;
+
+                &::after {
+                    position: absolute;
+                    top: -10%;
+                    left: -10%;
+                    transform: rotate(11deg);
+                    background: url('#{$sprite}sprite-fish.png');
+                    background-position: 346px -3px;
+                    width: 120%;
+                    height: 120%;
+                    content: '';
+                }
+            }
+
+            span {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
+                color: $black;
+                font-weight: 600;
+            }
+
+            span:nth-of-type(1) {
+                top: 12%;
+            }
+
+            span:nth-of-type(2) {
+                top: 48%;
+            }
+
+            .close-reveal {
+                display: block;
+                bottom: 18%;
+                left: 50%;
+                transform: translateX(-50%);
+
+                background: url('#{$sprite}sprite-main-nav.png');
+                background-position: 684px 149px;
+                background-size: 1500px 427px;
+
+                width: 25%;
+                height: 18%;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    outline: none;
+                    border: 0;
+                    box-shadow: none;
+                    background-position: 682px 374px;
+                }
+            }
+        }
+
+        .level-one-complete {
+            .banner {
+                position: absolute;
+                top: 35%;
+                left: 50%;
+                transform: translateX(-50%);
+
+                background: url('#{$sprite}sprites-levelup.png');
+                background-position: 8px -26px;
+                background-size: 2250px 292px;
+
+                width: 60%;
+                height: 55%;
+            }
+
+            span {
+                position: absolute;
+                top: 60%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
+                color: $black;
+                font-weight: 600;
+            }
+        }
+
+        .level-two-complete {
+            .banner {
+                position: absolute;
+                top: 35%;
+                left: 50%;
+                transform: translateX(-50%);
+
+                background: url('#{$sprite}sprites-levelup.png');
+                background-position: 1790px -26px;
+                background-size: 2250px 292px;
+
+                width: 60%;
+                height: 55%;
+            }
+
+            span {
+                position: absolute;
+                top: 60%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
+                color: $black;
+                font-weight: 600;
+            }
+        }
+
+        .level-three-complete {
+            .banner {
+                position: absolute;
+                top: 35%;
+                left: 50%;
+                transform: translateX(-50%);
+
+                background: url('#{$sprite}sprites-levelup.png');
+                background-position: 1340px -26px;
+                background-size: 2250px 292px;
+
+                width: 60%;
+                height: 55%;
+            }
+
+            span {
+                position: absolute;
+                top: 60%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
+                color: $black;
+                font-weight: 600;
+            }
+        }
+
+        .level-four-complete {
+            .banner {
+                position: absolute;
+                top: 35%;
+                left: 50%;
+                transform: translateX(-50%);
+
+                background: url('#{$sprite}sprites-levelup.png');
+                background-position: 890px -26px;
+                background-size: 2250px 292px;
+
+                width: 60%;
+                height: 55%;
+            }
+
+            span {
+                position: absolute;
+                top: 60%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
+                color: $black;
+                font-weight: 600;
+            }
+        }
+
+        .level-five-complete {
+            .banner {
+                position: absolute;
+                top: 35%;
+                left: 50%;
+                transform: translateX(-50%);
+
+                background: url('#{$sprite}sprites-levelup.png');
+                background-position: 445px -26px;
+                background-size: 2250px 292px;
+
+                width: 60%;
+                height: 55%;
+            }
+
+            span {
+                position: absolute;
+                top: 60%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
+                color: $black;
+                font-weight: 600;
+            }
+        }
+
+        &.open-try-again {
+            span {
+                position: absolute;
+                top: 20%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
+                color: $black;
+                font-weight: 600;
+            }
+
+            .close-reveal {
+                display: block;
+                bottom: 20%;
+                left: 50%;
+                transform: translateX(-50%);
+
+                background: url('#{$sprite}sprite-main-nav.png');
+                background-position: 310px 368px;
+                background-size: 1500px 427px;
+
+                width: 28%;
+                height: 18%;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    outline: none;
+                    border: 0;
+                    box-shadow: none;
+                    background-position: 308px 138px;
+                }
+            }
+        }
+
+        &.OPEN {
+            z-index: 2;
+
+            .frame {
+                opacity: 1;
+            }
+        }
+    }
+}

@@ -1,0 +1,48 @@
+@import 'variables';
+
+#flip {
+    img {
+        position: absolute;
+
+        &.banner {
+            top: 12%;
+            left: 23%;
+            width: 54%;
+        }
+
+        &.flip {
+            top: 48%;
+            left: 27%;
+            width: 46%;
+        }
+
+        &.flip-coin {
+            bottom: 0;
+            left: 11%;
+            width: 30%;
+        }
+    }
+
+    .message {
+        position: absolute;
+        top: 6%;
+        right: 7%;
+
+        background-image: url('#{$image}frame.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        width: 50%;
+        height: 56%;
+        text-align: center;
+        font-size: 1.4em;
+
+        p {
+            position: absolute;
+            top: 35%;
+            left: 20%;
+            color: $black;
+            font-size: 25px;
+        }
+    }
+}

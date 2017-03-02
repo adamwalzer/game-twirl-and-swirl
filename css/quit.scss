@@ -1,0 +1,64 @@
+@import 'variables';
+
+#quit {
+    .frame {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        background: url('#{$image}frame.png');
+        background-size: cover;
+        width: 63%;
+        height: 70%;
+
+        h2 {
+            position: absolute;
+            top: 2%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: $black;
+            font-weight: 700;
+        }
+
+        h3 {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            text-align: center;
+            color: $black;
+            font-size: 20px;
+            font-weight: 100;
+        }
+
+        .quit-yes,
+        .quit-no {
+            position: absolute;
+            top: 50%;
+            width: 35%;
+            height: 40%;
+        }
+
+        .quit-yes {
+            left: 15%;
+            background-position: 425px -50px;
+
+            &:hover,
+            &:focus {
+                background-position: 425px -264px;
+            }
+        }
+
+        .quit-no {
+            right: 15%;
+            background-position: 210px -35px;
+
+            &:hover,
+            &:focus {
+                background-position: 210px -249px;
+            }
+        }
+    }
+}
